@@ -1,4 +1,7 @@
+import time
+from datetime import datetime
 from django.db import models
+from django.utils.timezone import localtime, make_aware
 
 
 class Passcard(models.Model):
@@ -25,3 +28,17 @@ class Visit(models.Model):
             entered=self.entered_at,
             leaved= 'leaved at ' + str(self.leaved_at) if self.leaved_at else 'not leaved'
         )
+
+
+def get_duration(visit):
+    visit_time = visit.entered_at
+    local_entered_at = localtime(visit_time)
+    return (make_aware(datetime.today()) - local_entered_at).total_seconds()
+
+
+def format_duration(duration):
+    return time.strftime('%H:%M:%S', time.gmtime(duration))
+
+
+def is_visit_long(visit, minutes=60):
+    return (get_duration(visit) / 60) >= minutes
