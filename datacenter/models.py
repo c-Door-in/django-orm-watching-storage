@@ -31,9 +31,12 @@ class Visit(models.Model):
 
 
 def get_duration(visit):
-    visit_time = visit.entered_at
-    local_entered_at = localtime(visit_time)
-    return (make_aware(datetime.today()) - local_entered_at).total_seconds()
+    local_entered_at = localtime(visit.entered_at)
+    if visit.leaved_at:
+        end_time = visit.leaved_at
+    else:
+        end_time = make_aware(datetime.today())
+    return (end_time - local_entered_at).total_seconds()
 
 
 def format_duration(duration):

@@ -5,8 +5,6 @@ from .models import get_duration, format_duration
 
 
 def storage_information_view(request):
-    # Программируем здесь
-    
     non_closed_visits = []
     active_visits = Visit.objects.filter(leaved_at=None)
     for active_visit in active_visits:
@@ -17,7 +15,9 @@ def storage_information_view(request):
             'duration': format_duration(duration),
         }
         non_closed_visits.append(non_closed_visit)
+
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits,
     }
+    
     return render(request, 'storage_information.html', context)
