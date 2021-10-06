@@ -1,7 +1,7 @@
 import time
 from datetime import datetime
 from django.db import models
-from django.utils.timezone import localtime, make_aware
+from django.utils.timezone import localtime, now
 
 
 class Passcard(models.Model):
@@ -33,10 +33,11 @@ class Visit(models.Model):
 def get_duration(visit):
     local_entered_at = localtime(visit.entered_at)
     if visit.leaved_at:
-        end_time = visit.leaved_at
+        local_leaved_at = visit.leaved_at
+        return (local_leaved_at - local_entered_at).total_seconds()
     else:
-        end_time = make_aware(datetime.today())
-    return (end_time - local_entered_at).total_seconds()
+        return (now() - local_entered_at).total_seconds()
+    
 
 
 def format_duration(duration):
