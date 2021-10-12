@@ -3,11 +3,12 @@
 Security console website for our bank. You can't launch it without access data from our database.
 
 ## How to install
-
+### Install requirements
 - Python3 should be already installed. Then use pip (or pip3, if there is a conflict with Python2) to install dependencies:
 ```
 pip install -r requirements.txt
 ```
+### Create environment variables
 - Create `.env` file in a root directory
 - Put connection data in it (replace these values by your own)
 ```
@@ -22,6 +23,11 @@ DB_PASSWORD = YOUR_PASSWORD
 DATABASE_URL = postgres://...
 ```
 See [dj-database-url guide](https://github.com/jacobian/dj-database-url) for details.
+
+- List allowed hosts. Separate them by comma without spaces.
+```
+DB_ALLOWED_HOSTS = 127.0.0.1,.localhost,.youhost.com
+```
 
 ## How to start
 - Launch the site by using command 
@@ -41,12 +47,15 @@ The code was written for a learning — it's a lesson in a Python's and web deve
 
 Сайт пульта охраны для нашего банка. Вы не сможете запустить его, если у вас нет данных для доступа к нашей базе данных.
 
-## Запуск
+## Как установить
 
-- Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
+### Установка зависимостей
+Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
 ```
 pip install -r requirements.txt
 ```
+
+### Создание переменных окружения
 - Создайте файл `.env` в корневой директории
 - Внесите туда данные для подключения (замените значения на свои)
 ```
@@ -61,9 +70,15 @@ DB_PASSWORD = YOUR_PASSWORD
 DATABASE_URL = postgres://...
 ```
 Смотрите подробнее на [dj-database-url guide](https://github.com/jacobian/dj-database-url).
+
+- Перечислите разрешенные хосты. Разделите их запятыми без пробелов.
+```
+DB_ALLOWED_HOSTS = 127.0.0.1,.localhost,.youhost.com
+```
+## Запуск
 - Запустите сайт командой 
 ```
-python main.py
+python manage.py runserver 0.0.0.0:8000
 ```
 
 - Перейдите на сайт по адресу http://127.0.0.1:8000
