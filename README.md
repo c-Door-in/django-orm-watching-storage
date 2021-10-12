@@ -1,6 +1,6 @@
 # Security console
 
-Security console website for our bank. You can't launch it without access data for our database.
+Security console website for our bank. You can't launch it without access data from our database.
 
 ## How to install
 
@@ -9,15 +9,19 @@ Security console website for our bank. You can't launch it without access data f
 pip install -r requirements.txt
 ```
 - Create `.env` file in a root directory
-- Put connection data in it (replace these values to your own)
+- Put connection data in it (replace these values by your own)
 ```
-HOST = HOSTNAME
-PORT = PORTNUMBER
-NAME = NAME
-USER = USERNAME
-PASSWORD = PASSWORD
+DB_HOST = YOUR_HOSTNAME
+DB_PORT = YOUR_PORTNUMBER
+DB_NAME = YOUR_NAME
+DB_USER = YOUR_USERNAME
+DB_PASSWORD = YOUR_PASSWORD
 ```
-*The values should be got from module `Django ORM - Lesson 1 on the website` [Devman](https://dvmn.org)*
+*The service uses Postgres database by default. If you are using another one, you should change `dj-database-url`:*
+```
+DATABASE_URL = postgres://...
+```
+See [dj-database-url guide](https://github.com/jacobian/dj-database-url) for details.
 
 ## How to start
 - Launch the site by using command 
