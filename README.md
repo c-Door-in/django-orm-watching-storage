@@ -39,7 +39,7 @@ The code was written for a learning — it's a lesson in a Python's and web deve
 
 # Пульт охраны
 
-Сайт пульта охраны для нашего банка. Вы не сможете запустить его, если у вас нет данных для доуступа к нашей базе данных.
+Сайт пульта охраны для нашего банка. Вы не сможете запустить его, если у вас нет данных для доступа к нашей базе данных.
 
 ## Запуск
 
@@ -50,13 +50,17 @@ pip install -r requirements.txt
 - Создайте файл `.env` в корневой директории
 - Внесите туда данные для подключения (замените значения на свои)
 ```
-HOST = HOSTNAME
-PORT = PORTNUMBER
-NAME = NAME
-USER = USERNAME
-PASSWORD = PASSWORD
+DB_HOST = YOUR_HOSTNAME
+DB_PORT = YOUR_PORTNUMBER
+DB_NAME = YOUR_NAME
+DB_USER = YOUR_USERNAME
+DB_PASSWORD = YOUR_PASSWORD
 ```
-*Значения необходимо взять из модуля `Урок 1. Пишем пульт охраны банка` на сайте [Devman](https://dvmn.org)*
+*Приложение по-умолчанию использует базу даных Postgres. Если вы используете другую, необходимо поменять `dj-database-url`:*
+```
+DATABASE_URL = postgres://...
+```
+Смотрите подробнее на [dj-database-url guide](https://github.com/jacobian/dj-database-url).
 - Запустите сайт командой 
 ```
 python main.py
